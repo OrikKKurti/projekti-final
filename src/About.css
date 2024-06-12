@@ -14,3 +14,18 @@
     color: #666;
     font-size: 16px;
   }
+  .logot{
+    display: flex;
+    width: 350px;
+height: 300px;
+margin-right: 35px;
+object-fit: contain;
+  }
+  body{
+    text-align: center;
+  }
+  img{
+    margin: 35px;
+    position: relative;
+    left: 450px;
+  }

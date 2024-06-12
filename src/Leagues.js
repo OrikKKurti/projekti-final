@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { data } from "./data";
-import styles from "./Leagues.css"; 
+import './Leagues.css'; 
 
 const Leagues = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -10,41 +9,41 @@ const Leagues = () => {
     setSearchQuery(e.target.value);
   };
 
- 
   const filteredItems = data.filter((item) =>
     item.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  console.log(filteredItems); // Add this line to check filteredItems in console
+
   return (
-    <div className={styles.Leagues}>
+    <div className="leagues-container">
       <h1>Leagues</h1>
       <input
         type="text"
         placeholder="Search menu..."
         value={searchQuery}
         onChange={handleSearchChange}
-        className={styles.searchInput}
+        className="search-input"
       />
 
-
-{filteredItems.map((item) => (
-        <div key={item.id} className={styles.item}>
-          <h3>{item.teams}</h3>
+      {filteredItems.map((item) => (
+        <div key={item.id} className="league-item">
+          <h3>{item.name}</h3>
           <p>{item.countryOrContinent}</p>
+          <p>{item.teams}</p>
           <p>Last winner: {item.lastWinner}</p>
-          <p className="logoja">Logo: {item.LeagueLogo}</p>
-          <Link to={`/item/${item.id}`} className={styles.detailsLink}>
-            Details
-          </Link>
+          <div>
+          <p className="logo">Logo:</p>
+          <img src={item.LeagueLogo} alt={item.name} />
+          </div>
         </div>
       ))}
 
       {filteredItems.length === 0 && (
-        <p className={styles.noResults}>No items found matching your search.</p>
+        <p className="no-results">No items found matching your search.</p>
       )}
     </div>
   );
 };
 
 export default Leagues;
-
